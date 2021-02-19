@@ -7,6 +7,7 @@ import time, re#, post
 from toolbox import exch_article, make_dict, kos_pi_daq
 import post, math
 from telebot import bot
+import concurrent.futures
 
 
 def magam_kospi():
@@ -107,13 +108,23 @@ def magam_kospi():
     title = f"""[{name_h}] {g['point']}p({g['rate']}%) {g['plma_ment']} {g['num']} {chul_ma} """
     article = f"""{today}일 {name_h} {chul_ma}"""
 
+    grap = ''
+    if plma:
+        grap = """
+            <table style="clear:both;margin:auto;" width="540" border="0" cellspacing="0" cellpadding="0" align="center" data-mce-style="clear: both; margin: auto;" class="mceItemTable"><tbody><tr><td style="padding:0 10px 5px 2px;" align="center" data-mce-style="padding: 0 10px 5px 2px;"><img id="belongs_photo_2860611" class="news1_photo" style="max-width:518px;padding:5px;border:1px solid #d7d7d7" src="http://i.news1.kr/system/photos/2017/12/7/2860611/article.jpg" alt="" align="absmiddle" border="0" data-mce-src="http://i.news1.kr/system/photos/2017/12/7/2860611/article.jpg" data-mce-style="max-width: 518px; padding: 5px; border: 1px solid #d7d7d7;"></td></tr><tr><td id="content_caption_id" style="padding-bottom:10px; color:#666; letter-spacing: -1px; font-size:11px; font-family:Dotum sans-serif;" align="center" data-mce-style="padding-bottom: 10px; color: #666; letter-spacing: -1px; font-size: 11px; font-family: Dotum sans-serif;">© News1 DB</td></tr></tbody></table>
+            """+'<br><br>'
+
+    else:
+        grap ="""
+            <table style="clear:both;margin:auto;" width="540" border="0" cellspacing="0" cellpadding="0" align="center" data-mce-style="clear: both; margin: auto;" class="mceItemTable"><tbody><tr><td style="padding:0 10px 5px 2px;" align="center" data-mce-style="padding: 0 10px 5px 2px;"><img id="belongs_photo_2860599" class="news1_photo" style="max-width:518px;padding:5px;border:1px solid #d7d7d7" src="http://i.news1.kr/system/photos/2017/12/7/2860599/article.jpg" alt="" align="absmiddle" border="0" data-mce-src="http://i.news1.kr/system/photos/2017/12/7/2860599/article.jpg" data-mce-style="max-width: 518px; padding: 5px; border: 1px solid #d7d7d7;"></td></tr><tr><td id="content_caption_id" style="padding-bottom:10px; color:#666; letter-spacing: -1px; font-size:11px; font-family:Dotum sans-serif;" align="center" data-mce-style="padding-bottom: 10px; color: #666; letter-spacing: -1px; font-size: 11px; font-family: Dotum sans-serif;">© News1 DB</td></tr></tbody></table>
+            """+'<br><br>'
+    article = grap +article
+
     post.do_temp(title= title, article= article)
     post.do_mbot(title= title, article= article, rcept_no = str(today) + '21', rm='마감')
     bot('c' ,"코스피 올렸습니다\n"+"http://testbot.ddns.net:5231/bot_v3")
     return g
 
-if __name__ == '__main__':
-    magam_kospi()
 
 def magam_kosdaq():
     clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -122,10 +133,12 @@ def magam_kosdaq():
 
     a='fefd4d54000000303032353454000200570255504a4f4e4700003030303031353030303231312020303231313030000043333373756863726174653030303030303030303030303032313031323231333634313539392020000000000000000000000000000000003030313537393030317f3130311e393030387f3130311e243030303030303135303030303235202020202020202020202020202020203040202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020303030323032301f31301f32351f31311f31321f31331f3135'
     a= codecs.decode(a, 'hex')
-    clientSocket.connect(('211.115.74.81', 14811))
+    clientSocket.connect(('110.10.19.124', 14811))
 
     tik_dick= {}
+    time.sleep(1)
     while True:
+
         clientSocket.send(a)
         data = clientSocket.recv(1024)
         # print(data.hex())
@@ -211,10 +224,30 @@ def magam_kosdaq():
 
     title = f"""[{name_h}] {g['point']}p({g['rate']}%) {g['plma_ment']} {g['num']} {chul_ma} """
     article = f"""{today}일 {name_h} {chul_ma}"""
+
+    grap =''
+    if plma:
+        grap ="""
+            <tbody><tr><td style="padding:0 10px 5px 2px;" align="center" data-mce-style="padding: 0 10px 5px 2px;"><img id="belongs_photo_2860604" class="news1_photo" style="max-width:518px;padding:5px;border:1px solid #d7d7d7" src="http://i.news1.kr/system/photos/2017/12/7/2860604/article.jpg" alt="" align="absmiddle" border="0" data-mce-src="http://i.news1.kr/system/photos/2017/12/7/2860604/article.jpg" data-mce-style="max-width: 518px; padding: 5px; border: 1px solid #d7d7d7;"></td></tr><tr><td id="content_caption_id" style="padding-bottom:10px; color:#666; letter-spacing: -1px; font-size:11px; font-family:Dotum sans-serif;" align="center" data-mce-style="padding-bottom: 10px; color: #666; letter-spacing: -1px; font-size: 11px; font-family: Dotum sans-serif;">© News1 DB</td></tr></tbody>
+            """+'<br><br>'
+    else:
+        grap = """
+            <tbody><tr><td style="padding:0 10px 5px 2px;" align="center" data-mce-style="padding: 0 10px 5px 2px;"><img id="belongs_photo_2860605" class="news1_photo" style="max-width:518px;padding:5px;border:1px solid #d7d7d7" src="http://i.news1.kr/system/photos/2017/12/7/2860605/article.jpg" alt="" align="absmiddle" border="0" data-mce-src="http://i.news1.kr/system/photos/2017/12/7/2860605/article.jpg" data-mce-style="max-width: 518px; padding: 5px; border: 1px solid #d7d7d7;"></td></tr><tr><td id="content_caption_id" style="padding-bottom:10px; color:#666; letter-spacing: -1px; font-size:11px; font-family:Dotum sans-serif;" align="center" data-mce-style="padding-bottom: 10px; color: #666; letter-spacing: -1px; font-size: 11px; font-family: Dotum sans-serif;">© News1 DB</td></tr></tbody>
+            """+'<br><br>'
+    article = grap +article
+
     post.do_temp(title= title, article= article)
     post.do_mbot(title= title, article= article, rcept_no = str(today) + '22', rm='마감')
     bot('c' ,"코스닥 올렸습니다\n"+"http://testbot.ddns.net:5231/bot_v3")
     return g
+
+if __name__ == '__main__':
+    with concurrent.futures.ThreadPoolExecutor() as executor:#####
+        f1 =executor.submit(magam_kospi)
+        f2 =executor.submit(magam_kosdaq)
+
+        kospi_data = f1.result()
+        kosdaq_data = f2.result()
 
 
 #연합에서 환율 가져옴
