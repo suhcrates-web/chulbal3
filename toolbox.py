@@ -57,7 +57,7 @@ def make_dict(be_0 = 'None'):
         url = 'https://www.kiwoom.com/nkw.HeroFrontJisu3.do'
         req = requests.post(url)
         be_0 = BeautifulSoup(req.text, 'html.parser')
-        # print(be_0)
+        print(be_0)
 
     be = be_0.find_all('li')
     jisu_dict_s= {}
@@ -97,6 +97,10 @@ def make_dict(be_0 = 'None'):
 
         jisu_dict_s[name] =jisu_dict
     return {'jisu_dict_s':jisu_dict_s}
+
+if __name__ == '__main__':
+    make_dict()
+
 
 #출발용 코스피 기사쓰기
 def kos_pi_daq(jisu_dict_s=None, pi_daq = None, chul_ma = None):

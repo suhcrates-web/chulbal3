@@ -1,5 +1,6 @@
 import socket, codecs, time, re
 from datetime import date, timedelta, datetime
+import datetime
 from bs4 import BeautifulSoup
 import os, glob, json, requests
 import time, re#, post
@@ -50,7 +51,7 @@ def magam_kospi():
                     # except:
                     #     print('.', end='')
         # print('')
-
+        print([line])
         if bool(re.search('MT', line)):
             # print(bool(re.search('MT', line)))
             line= re.sub(r'.*MT','',line)
@@ -87,7 +88,7 @@ def magam_kospi():
 
                 else:
                     break
-            print([line])
+
             # print(tik_dick)
 
             # 888888 이 있으면 while 루프를 멈춤
@@ -111,6 +112,8 @@ def magam_kospi():
     bot('c' ,"코스피 올렸습니다\n"+"http://testbot.ddns.net:5231/bot_v3")
     return g
 
+if __name__ == '__main__':
+    magam_kospi()
 
 def magam_kosdaq():
     clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -154,7 +157,7 @@ def magam_kosdaq():
                     # except:
                     #     print('.', end='')
         # print('')
-
+        print([line])
         if bool(re.search('MT', line)):
             # print(bool(re.search('MT', line)))
             line= re.sub(r'.*MT','',line)
@@ -191,7 +194,7 @@ def magam_kosdaq():
 
                 else:
                     break
-            print([line])
+
             # print(tik_dick)
 
             # 888888 이 있으면 while 루프를 멈춤
@@ -330,8 +333,7 @@ def chulbal_kos():
         data_daq = kosdaq_result['data']
         #post
         post.do_temp(title=art_daq['title'], article=art_daq['article'])
-        post.do_mbot(title=art_daq['title'], article=art_daq['article'], rcept_no = str(today) + cm_num+
-                                                                                                '2', rm=rm)
+        post.do_mbot(title=art_daq['title'], article=art_daq['article'], rcept_no = str(today) + cm_num+'2', rm=rm)
     except:
         print('출발 코스닥 문제발생')
 
