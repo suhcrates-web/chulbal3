@@ -1,7 +1,4 @@
-from datetime import date, timedelta, datetime
-from bs4 import BeautifulSoup
-import os, glob, json, requests
-import time, re#, post
+import time
 import concurrent.futures
 from article import magam_kospi, magam_kosdaq, yon_exch, chulbal_kos, second_bo
 

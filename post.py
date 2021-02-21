@@ -26,8 +26,9 @@ def do_mbot(op='set_disc', title = '((((테스트2)))', article = '내용없음2
 
     with open('C:/stamp/port.txt', 'r') as f:
         port = f.read().split(',')#노트북 5232, 데스크탑 5231
-        port = port[1]  # http://172.30.1.53:5232/bot_v3/
-    if port ==5232:
+        port = port[0]  # http://172.30.1.53:5232/bot_v3/
+    if port =='5232':
+        print('집배신엔 안보냄')
         return "집배신엔 안보냄"
 
     url = 'http://alpha.news1.kr/ajax/article_api.php'

@@ -8,8 +8,7 @@ import post, math
 from telebot import bot
 import concurrent.futures
 
-# data_0 = ''.hex()
-# print(data_0)
+
 
 #마감 코스피 코스닥
 def magam_kospi():
@@ -20,13 +19,14 @@ def magam_kospi():
     a='fefd4d54000000303032353454000200570255504a4f4e4700003030303031353030303231312020303231313030000043333373756863726174653030303030303030303030303032303731323231313830313639352020000000000000000000000000000000003030313537393030317f3030311e393030387f3030311e243030303030303135303030303235202020202020202020202020202020203040202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020202020303030323032301f31301f32351f31311f31321f31331f3135' #4번
     a= codecs.decode(a, 'hex')
     clientSocket.connect(('211.115.74.81', 14811))
-
+    line_bf = ''
     tik_dick= {}
     while True:
         clientSocket.send(a)
         data = clientSocket.recv(1024)
-        # print([data.hex()])
+        # print(data.hex())
         data = data.hex()
+
         # print(codecs.decode(data, 'hex').decode('cp949'))
         line = []
         han = False
@@ -55,25 +55,21 @@ def magam_kospi():
         # print('')
 
 
-
-        #
         if bool(re.search('MT', line)):
             pass
         else:
             line = line_bf + line
         print([line])
-        print(bool(re.search('MT', line)))
-        line= re.sub(r'.*(?=MT)','',line)
+        line= line[line.index('MT'):]
         line_bf = line
-
-        # line= re.sub(r'.*0B','',line)
+        # print(bool(re.search('0B',line)))
+        line= re.sub(r'.*0B','',line)
         # print(re.search(b'\x20\x20\x20\x20\x20','',line))
-        line= re.sub('.*                   ','',line)
-        # data_0 = line.encode('utf-8').hex()
-
+        # print(bool(re.search('                              ',line)))
+        line= re.sub('.*                              ','',line)
         # line= re.sub('.*\x02\x02\x02\x02\x02\x02\x02\x02\x02\x02\x02\x02','',line)
         line = line[5:]
-        # data_0 = line.encode('utf-8').hex()
+        # print([line])
         line = line.split(sep='\n')
 
         tik_list = []
@@ -101,15 +97,15 @@ def magam_kospi():
                 tik_dick[tik[0]]['plma_ment'] = plma_ment
 
             else:
-                pass
+                break  #칼럼 7개 아니면 안먹음
 
         # print(tik_dick)
 
         # 888888 이 있으면 while 루프를 멈춤
         if '888888' in [*tik_dick]:
             g = tik_dick['888888']
-            print('here')
-
+            print('pi yuu')
+            break  #while루프 멈춤
         print("=====================================================================")
         time.sleep(3)
     name_h = '코스피'
@@ -132,7 +128,8 @@ def magam_kospi():
             """+'<br><br>'
     article = grap +article
 
-    print(title)
+    post.do_temp(title= title, article= article)
+    post.do_mbot(title= title, article= article, rcept_no = str(today) + '21', rm='마감')
     bot('c' ,"코스피 올렸습니다\n"+"http://testbot.ddns.net:5231/bot_v3")
     return g
 
