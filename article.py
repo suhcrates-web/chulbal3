@@ -433,7 +433,7 @@ def second_bo(jisu_dict_s=None, chul_ma = None):
             g[i+'_ment_jin'] = '떨어진'
             g[i+'_arr'] = '↓'
 
-    ks_kd = '는' #코스피 코스닥 같으면 '도'
+    ks_kd = '은' #코스피 코스닥 같으면 '도'
     if g['kp_plma'] == g['kd_plma']:
         ks_kd = '도'
     if chul_ma == 'chul': #출발
@@ -450,7 +450,7 @@ def second_bo(jisu_dict_s=None, chul_ma = None):
         rm = '마감'
 
         title = f"""코스피 {g['kp_rate']}% {g['kp_how']}{g['kp_ment_sang']} {g['kp_sun']}선...코스닥 {g['kd_rate']}%{g['kd_arr']}(2보)"""
-        article = f"""{today}일 코스피 지수가 {g['kd_rate']}% {g['kp_how']}{g['kp_ment_sang']}해 {g['kp_sun']}선으로 마감했다. 코스닥
+        article = f"""{today}일 코스피 지수가 {g['kp_rate']}% {g['kp_how']}{g['kp_ment_sang']}해 {g['kp_sun']}선으로 마감했다. 코스닥
 {ks_kd} {g['kd_ment_se']}였다. <br><br>이날 코스피 지수는 {g['kp_point']}포인트(p)({g['kp_rate']}%) {g['kp_plma_ment']} 
 {g['kp_num']}로 거래를 마쳤다.<br><br>코스닥 지수는 {g['kd_point']}p({g['kd_rate']}%) {g['kd_plma_ment']}{g['kd_num']}로 
 마감했다.<br><br>달러/원 환율은 {g['ex_point']}원 {g['ex_plma_ment']} {g['ex_num']}원을 기록했다."""
