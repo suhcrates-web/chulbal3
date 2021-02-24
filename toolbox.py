@@ -133,10 +133,12 @@ def kos_pi_daq(jisu_dict_s=None, pi_daq = None, chul_ma = None):
     plma_ment = jisu_dict_s[name]['plma_ment']
     if plma_ment == '오른':
         plma = True
+        buho = ''
     elif plma_ment == '내린':
         plma = False
+        buho = '-'
 
-    title = f"""[{name_h}] {point}p({rate}%) {plma_ment} {num} {st_en} """
+    title = f"""[{name_h}] {point}p({buho}{rate}%) {plma_ment} {num} {st_en} """
     article = f"""{today}일 {name_h} {st_en}"""
 
     #그래픽

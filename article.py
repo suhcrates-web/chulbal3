@@ -159,8 +159,13 @@ def magam_kospi():
     chul_ma = '마감'
     today = date.today().day
 
+    if plma == False:
+        buho = '-'
+    else:
+        buho = ''
 
-    title = f"""[{name_h}] {g['point']}p({g['rate']}%) {g['plma_ment']} {g['num']} {chul_ma} """
+
+    title = f"""[{name_h}] {g['point']}p({buho}{g['rate']}%) {g['plma_ment']} {g['num']} {chul_ma} """
     article = f"""{today}일 {name_h} {chul_ma}"""
 
     grap = ''
@@ -282,7 +287,13 @@ def magam_kosdaq():
     chul_ma = '마감'
     today = date.today().day
 
-    title = f"""[{name_h}] {g['point']}p({g['rate']}%) {g['plma_ment']} {g['num']} {chul_ma} """
+    if plma == False:
+        buho = '-'
+    else:
+        buho = ''
+
+
+    title = f"""[{name_h}] {g['point']}p({buho}{g['rate']}%) {g['plma_ment']} {g['num']} {chul_ma} """
     article = f"""{today}일 {name_h} {chul_ma}"""
 
     grap =''
