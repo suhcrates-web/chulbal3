@@ -1,6 +1,6 @@
 import time
 import concurrent.futures
-from article import magam_kospi, magam_kosdaq, yon_exch, chulbal_kos, second_bo
+from article import magam_kospi, magam_kosdaq, yon_exch, chulbal_kos, second_bo, chul_second_alone
 
 
 
@@ -17,8 +17,12 @@ def chulbal():
     chul_dict['kospi'] = kos_data['kospi']
     chul_dict['kosdaq'] = kos_data['kosdaq']
     chul_dict['원/달러'] = exch_data
-    second_bo(chul_dict, 'chul')
-    return print('2보 끝')
+    # second_bo(chul_dict, 'chul')
+    return print('코스피, 코스닥, 환율 끝')
+
+#출발 2보
+def chul_second():
+    chul_second_alone()
 
 
 

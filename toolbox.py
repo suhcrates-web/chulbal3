@@ -104,7 +104,7 @@ def make_dict(be_0 = 'None'):
         rate = jisu[3].replace('%','').replace(' ','')
         jisu_dict['rate'] = rate
 
-
+        name = name.lower()
         jisu_dict_s[name] =jisu_dict
     return {'jisu_dict_s':jisu_dict_s}
 
@@ -117,10 +117,10 @@ def kos_pi_daq(jisu_dict_s=None, pi_daq = None, chul_ma = None):
 
     if pi_daq == 'kospi':
         name_h = '코스피'  #한글이름
-        name = 'KOSPI'
+        name = 'kospi'
     elif pi_daq == 'kosdaq':
         name_h = '코스닥'  #한글이름
-        name = 'KOSDAQ'
+        name = 'kosdaq'
     today = date.today().day
 
     if chul_ma:
