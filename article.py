@@ -111,13 +111,16 @@ def chul_yeong_kos(kos):
 
         # 888888 이 있으면 while 루프를 멈춤
         first_time = [*tik_dick][-1]
-        if first_time[:2] == '15':
+        print(first_time)
+        time_temp = '09'
+
+        if first_time[:2] == time_temp:
             print('here')
             g = tik_dick[first_time]
             print(g)
-        print(first_time)
-        print('yuu')
-        break  #while루프 멈춤
+            print(first_time)
+            print('yuu')
+            break  #while루프 멈춤
         print("=====================================================================")
         time.sleep(3)
 
@@ -155,12 +158,12 @@ def chul_yeong_kos(kos):
                 """+'<br><br>'
 
     article = grap +article
-
-    post.do_temp(title= '(test)'+title, article= article)
-    # post.do_mbot(title= title, article= article, rcept_no = str(today) + '2'+ str(cm_num), rm='출발')
-    # bot('c' ,"코스피 올렸습니다\n"+"http://testbot.ddns.net:5231/bot_v3")
     print(title)
     print(article)
+    post.do_temp(title= '(test)'+title, article= article)
+    post.do_mbot(title= title, article= article, rcept_no = str(today) + '2'+ str(cm_num), rm='출발')
+    bot('c' ,f"{name_h} 올렸습니다\n"+"http://testbot.ddns.net:5231/bot_v3")
+
     return g
 
 
