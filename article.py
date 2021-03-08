@@ -109,18 +109,27 @@ def chul_yeong_kos(kos):
 
         # print(tik_dick)
 
-        # 888888 이 있으면 while 루프를 멈춤
-        first_time = [*tik_dick][-1]
-        print(first_time)
-        time_temp = '09'
 
-        if first_time[:2] == time_temp:
-            print('here')
-            g = tik_dick[first_time]
-            print(g)
+        # 리스트 마지막걸로 만듦
+        try:
+            #9시 데이터 뜨기 전엔 에러남. 에러나면 그냥 넘기기로.
+            first_time = [*tik_dick][-1]
             print(first_time)
-            print('yuu')
-            break  #while루프 멈춤
+            time_temp = '09'
+
+            if first_time[:2] == time_temp:
+                print('here')
+                g = tik_dick[first_time]
+                print(g)
+                print(first_time)
+                print('yuu')
+                break  #while루프 멈춤
+            else:  # 타임스탬프 앞자리가 09가 아니어도 넘기기로
+                print(f'{name_h} 타임스템프 09 아직')
+                pass
+        except:
+            print(f'{name_h} 데이터 아직')
+            pass
         print("=====================================================================")
         time.sleep(3)
 
