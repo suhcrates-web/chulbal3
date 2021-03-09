@@ -12,7 +12,7 @@ def timeline():
         now= datetime.today().strftime(format='%H:%M')
         print('1/3')
         #출발
-        if (now >= "09:00") and (now<="09:01"):
+        if (now >= "09:00") and (now < "09:01"):
             chulbal()
             time.sleep(60)
         print('2/3')
