@@ -236,14 +236,14 @@ def do_songo(op='new_article', title = '제목없음', article = '내용없음',
             'articles_num' : '',
             'article_status' : '99',
             'article_org_status': '0',
-            'regist_status': '' ,
+            'regist_status': '99' ,  # ''에서 '99'로
             'result_category_selected' : '83',
             'result_byline_selected':'317', ##
             'result_keyword_selected': '',
             'result_keyword_str': '',
-            'result_article_relation_value':'9' ,
+            'result_article_relation_value':'' , #9인거 지움.
             'article_foreign_photo_id_arr':'',
-            'article_photo_id_arr':'',
+            'article_photo_id_arr':'',  ##이거 해야되는듯.
             'article_movie_id_arr':'',
             'result_hotissue_selected':'',
             'user_job_title' : '98',
