@@ -169,8 +169,9 @@ def chul_yeong_kos(kos):
     article = grap +article
     print(title)
     print(article)
-    post.do_temp(title= '(test)'+title, article= article)
+    post.do_temp(title= title, article= article)
     post.do_mbot(title= title, article= article, rcept_no = str(today) + '1'+ str(cm_num), rm='출발')
+    post.do_songo(title=title, article=article)
     bot('c' ,f"{name_h} 올렸습니다\n"+"http://testbot.ddns.net:5231/bot_v3")
 
     return g
@@ -349,6 +350,7 @@ def magam_kospi():
 
     post.do_temp(title= title, article= article)
     post.do_mbot(title= title, article= article, rcept_no = str(today) + '21', rm='마감')
+    post.do_songo(title=title, article=article)
     bot('c' ,"코스피 올렸습니다\n"+"http://testbot.ddns.net:5231/bot_v3")
     return g
 
@@ -476,6 +478,7 @@ def magam_kosdaq():
 
     post.do_temp(title= title, article= article)
     post.do_mbot(title= title, article= article, rcept_no = str(today) + '22', rm='마감')
+    post.do_songo(title=title, article=article)
     bot('c' ,"코스닥 올렸습니다\n"+"http://testbot.ddns.net:5231/bot_v3")
     return g
 
@@ -556,7 +559,9 @@ def yon_exch(chul_ma):
 
     #post
     post.do_temp(title=art['title'], article=art['article'])
+    time.sleep(3)
     post.do_mbot(title=art['title'], article=art['article'], rcept_no = str(today) + str(cm_num)+ '3', rm=rm)
+    post.do_songo(title=art['title'], article=art['article'])
     bot('c' ,"환율 올렸습니다\n"+"http://testbot.ddns.net:5231/bot_v3")
     print('연합 환율 -> 작성 완료')
 
@@ -648,6 +653,7 @@ def second_bo(jisu_dict_s=None, chul_ma = None):
 
     post.do_temp(title= title, article= article)
     post.do_mbot(title= title, article= article, rcept_no = str(today) + str(cm_num)+ '4', rm=rm)
+
     bot('c' ,"2보 올렸습니다\n"+"http://testbot.ddns.net:5231/bot_v3")
     # print(title + article)
     return ("2보까지 완료")

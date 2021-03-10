@@ -214,3 +214,80 @@ def do(op='new_article', title = '제목없음', article = '내용없음', rcept
         data = data,)
 
 
+#송고해버림
+def do_songo(op='new_article', title = '제목없음', article = '내용없음', rcept_no = None):
+    #세션열기
+    session_requests = requests.session()
+    #로그인정보
+    payload = {
+        'cmd' : 'member',
+        'op' : 'alpha_login',
+        'uid' : 'suhcrates' ,
+        'pwd' : 'sbtmdnjs1'
+    }
+    #로그인, 기사 보내는 ajax url.
+    login_url ='http://alpha.news1.kr/ajax/ajax.php'
+
+    if op=='new_article':
+        data = {
+            'cmd' : 'article',
+            'op' : 'new_article',
+            'autosave': '',
+            'articles_num' : '',
+            'article_status' : '99',
+            'article_org_status': '0',
+            'regist_status': '' ,
+            'result_category_selected' : '83',
+            'result_byline_selected':'317', ##
+            'result_keyword_selected': '',
+            'result_keyword_str': '',
+            'result_article_relation_value':'9' ,
+            'article_foreign_photo_id_arr':'',
+            'article_photo_id_arr':'',
+            'article_movie_id_arr':'',
+            'result_hotissue_selected':'',
+            'user_job_title' : '98',
+            'article_title' : title,
+            'subSubjectChk' : '1',
+            'subSubject[]' : '',
+            'article_byline_area' : '(서울=뉴스1)',
+            'article_byline_selected' : '317', #응진선배 317.   나는 1128
+            'contentArea' : article,
+            'article_editor_email' : 'suhcrates@news1.kr',
+            'article_embargo_hour' : '',
+            'article_embargo_min' : '',
+            'department_id':'98',
+            'source_id' : '10',
+            'article_category_id' : '211',
+            'article_category_selected' : '211',
+            'article_kindof' : '2',
+            'article_cotent_type[]' : '7',
+            'keyword':'',
+            'www_only' : '0',
+            'exclude_images' : '0',
+            'article_bundle_id' : '24',
+            'article_bundle_selected' : '24',
+            'is_edit_title':'1',
+            'bundle_edited_title':'',
+            'breaking' : '2',
+            'article_relation_value' :'1',
+            'id': '4139089',
+            'code' : '1000',
+            'mode' : '',
+            'user_id' :'1128',
+            'msg': 'OK',
+            'status' : '1',
+
+        }
+
+
+
+
+    # data0['contentArea'] = content_n1
+    session_requests.post(
+        login_url,
+        data = payload,
+    )
+    session_requests.post(
+        login_url,
+        data = data,)
