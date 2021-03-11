@@ -228,6 +228,19 @@ def do_songo(op='new_article', title = '제목없음', article = '내용없음',
     #로그인, 기사 보내는 ajax url.
     login_url ='http://alpha.news1.kr/ajax/ajax.php'
 
+    article ="""
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+</head>
+<body>
+    """ + article + """
+    </body>
+    </html>
+    """
+
+
+
     if op=='new_article':
         data = {
             'cmd' : 'article',
@@ -271,8 +284,8 @@ def do_songo(op='new_article', title = '제목없음', article = '내용없음',
             'bundle_edited_title':'',
             'breaking' : '2',
             'article_relation_value' :'1',
-            'id': '4139089',
-            'code' : '1000',
+            # 'id': '4139089',
+            # 'code' : '1000',
             'mode' : '',
             'user_id' :'1128',
             'msg': 'OK',
