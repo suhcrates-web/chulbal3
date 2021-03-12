@@ -238,7 +238,24 @@ def do_songo(op='new_article', title = '제목없음', article = '내용없음',
     </body>
     </html>
     """
-
+    day_name =datetime.today().strftime("%A")[:3]
+    month_name = datetime.today().strftime("%B")[:3]
+    date_header = datetime.today().strftime(f"{day_name}, %d {month_name} %Y 08:31:05 GMT")
+    date_cookie = datetime.today().strftime(f"%d-{month_name}-%Y %H:%M:%S GMT")
+    header ={
+        'Connection': 'Keep-Alive',
+        'Content-Length': '26',
+        'Content-Type': 'application/json',
+        'Date': date_header,
+        'Expires': 'Fri, 01 Jan 2010 00:00:00 GMT',
+        'Keep-Alive': 'timeout=30, max=10000',
+        'Server': 'Apache',
+        'Set-Cookie': f"""journal_news1=6ywi%2Bi1EUDgHHe%2Be0HwOuzjEkXRi3n31kC0w7E9gG
+        %2F91Ln7SBpd2BVSeCMpbOQFmUh0IF2qR82cddTRUevXruKd%2B5AoLAn67ZVf%2Bk%2FZTjRDUnE0L6tYCpHs6t8q%2BoEObkMsKEAk417
+        %2FJlIspbzQ3hZxjKBU%2FQ4bawsxLsyvRpT1K1zBuWXomawl6%2BFY1LHGPbnbTGRkrEhbY4QpmV2jmMETh0NWh4Pa%2B
+        %2FxQ4cUpEXwHVfSCPSQKVUoI54fIq75j0EjYO0u2XF%2B
+        %2Fp4kgN13ZycFb65SfZab8gCNk4ys0unpyRVZQIHfQJ0jVexksE5g8btMSUdAcEyskrwNjOCtHwsjiMAsZFjVfy8FMVqSiMiAXVz1iJvv8aEwQO0KF8JzJfdpW4ySf6sYYzczGkyPujFjQne%2FldZ7hB7ZWTF9GuCqTS94Q3AGAgc051vRwDXJ%2BHz6yS8r21oBSXwkHHBiSz2YM9QXKMvlJiSYYe8UgIAHPzswX838RJlnKn%2FfZoK565UMMnMwxXxR2ZEf3Qt4rX2BRCJ%2FKG8fwhNnqvcc8hUZ%2Fjbm%2F%2BVnWEEjYVJYatoBuavMzNegi9qfWwGcwlsrLI8eoimTTzfZW38kD2hqkan5hCzH0JqdTbd4HSmkM8Z%2B%2FLModeQxjCnFRv9enaQEpP8B110aI7w7VBjWTrymagfoCudULTLYDVpEOBhKX5jRdTrpc2HWQ1dOmcM1sYPw6aDmAjEyZbnHJoKns%2FkPz0jTqiSn24lt039%2BZ2elCTvwzM5aB6ajyWK3c9lQX%2B1SV%2FVyEFBZeOQbpZ0dsZTcckkXON1YTUJErA3uHEoo04GHV9ODdRw1kfvsmVzXWxDGvG%2F%2BE%2BBD29XdorhgAyOxAp19hwdmTQaU7Tas%2F4z41pyIdQcHPjyV4jtrA7cRf5ANg97OwaPlcOLWuLeCfWGfuAXGlPi8QZKExq4Im1CxK9s1oVMatYfleEAYCaF74hgp%2FUkhy%2BFGWpp1OyzfwQoZXed3AoBlMuH19Uw37HFVUuowMJWLgTu4jVTD4uAavtAQ1ag51YYu6GnCKh8XJ2lOtFyN8%3D; expires={day_name}, {date_cookie}; path=/; domain=alpha.news1.kr"""
+    }
 
 
     if op=='new_article':
@@ -294,8 +311,6 @@ def do_songo(op='new_article', title = '제목없음', article = '내용없음',
         }
 
 
-
-
     # data0['contentArea'] = content_n1
     session_requests.post(
         login_url,
@@ -303,4 +318,5 @@ def do_songo(op='new_article', title = '제목없음', article = '내용없음',
     )
     session_requests.post(
         login_url,
-        data = data,)
+        data = data,
+        headers=header)
