@@ -215,7 +215,8 @@ def do(op='new_article', title = '제목없음', article = '내용없음', rcept
 
 
 #송고해버림
-def do_songo(op='new_article', title = '제목없음', article = '내용없음', rcept_no = None):
+#집배신 쿠키
+def do_songo_old(op='new_article', title = '제목없음', article = '내용없음', rcept_no = None):
     #세션열기
     session_requests = requests.session()
     #로그인정보
@@ -310,6 +311,105 @@ def do_songo(op='new_article', title = '제목없음', article = '내용없음',
 
 
     # data0['contentArea'] = content_n1
+    session_requests.post(
+        login_url,
+        data = payload,
+    )
+    session_requests.post(
+        login_url,
+        data = data,
+        headers=header)
+
+#공시창 쿠키 사용. 이건 됨.
+def do_songo(op='new_article', title = '제목없음', article = '내용없음', rcept_no = None):
+    #세션열기
+    session_requests = requests.session()
+    #로그인정보
+    payload = {
+        'cmd' : 'member',
+        'op' : 'alpha_login',
+        'uid' : 'suhcrates' ,
+        'pwd' : 'sbtmdnjs1'
+    }
+    #로그인, 기사 보내는 ajax url.
+    login_url ='http://alpha.news1.kr/ajax/ajax.php'
+
+    article ="""
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+</head>
+<body>
+    """ + article + """
+    </body>
+    </html>
+    """
+
+
+    header = {
+        'Accept': 'application/json, text/javascript, */*; q=0.01',
+        'Accept-Encoding': 'gzip, deflate',
+        'Accept-Language': 'ko,en-US;q=0.9,en;q=0.8,ko-KR;q=0.7',
+        'Connection': 'keep-alive',
+        'Content-Length': '2502',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'Cookie': '_ga=GA1.2.1978667146.1545832163; dable_uid=31188705.1553472886532; '
+                  '_ss_pp_id=a07ad53b6b5b3268f674db58043e890d; _gid=GA1.2.1846676616.1615272236; HttpOnly; PHPSESSID=d24fvdf7it0oe0pe06vh420tb5; journal_news1=6ywi%2Bi1EUDgHHe%2Be0HwOuzjEkXRi3n31kC0w7E9gG%2F91Ln7SBpd2BVSeCMpbOQFmUh0IF2qR82cddTRUevXruKd%2B5AoLAn67ZVf%2Bk%2FZTjRDUnE0L6tYCpHs6t8q%2BoEObkMsKEAk417%2FJlIspbzQ3hZxjKBU%2FQ4bawsxLsyvRpT1K1zBuWXomawl6%2BFY1LHGPbnbTGRkrEhbY4QpmV2jmMETh0NWh4Pa%2B%2FxQ4cUpEXwHVfSCPSQKVUoI54fIq75j0EjYO0u2XF%2B%2Fp4kgN13ZycFb65SfZab8gCNk4ys0unpyRVZQIHfQJ0jVexksE5g8btMSUdAcEyskrwNjOCtHwsjiMAsZFjVfy8FMVqSiMiAXVz1iJvv8aEwQO0KF8JzJfdpW4ySf6sYYzczGkyPujFjQne%2FldZ7hB7ZWTF9GuCqTS94Q3AGAgc051vRwDXJ%2BHz6yS8r21oBSXwkHHBiSz2YM9QXKMvlJiSYYe8UgIAHPzswX838RJlnKn%2FfZoK565UMMnMwxXxR2ZEf3Qt4rX2BRCJ%2FKG8fwhNnqvcc8hUZ%2Fjbm%2F%2BVnWEEjYVJYatoBuavMzNegi9qfWwGcwlsrLI8eoimTTzfZW38kD2hqkan5hCzH0JqdTbd4HSmkM8Z%2B%2FLModeQxjCnFRv9enaQEpP8B110aI7w7VBjWTrymagfoCudULTLYDVpEOBhKX5jRdTrpc2HWQ1dOmcM1sYPw6aDmAjEyZbnHJoKns%2FkPz0jTqiSn24lt039%2BZ2elCTvwzM5aB6ajyWK3c9lQX%2B1SV%2FVyEFBZeOQbpZ0dsZTcckkXON1YTUJErA3uHEoo04GHV9ODdRw1kfvsmVzXWxDGvG%2F%2BE%2BBD29XdorhgAyOxAp19hwdmTQaU7Tas%2F4z41pyIdQcHPjyV4jtrA7cRf5ANg97OwaPlcOLWuLeCfWGfuAXGlPi8QZKExq4Im1CxK9s1oVMatYfleEAYCaF74hgp%2FUkhy%2BFGWpp1OyzfwQoZXed3DExuw7%2FrDbDe4X4LFU%2FKTiqJ23%2BCZ1TDg4hFPZ3B9EYtEXCDSD32wYNkMORnxJtrw%3D; _td=4a06d3c1-7974-4b42-977e-2d9ec769d32e; __gads=ID=aaad8bfa1da87c47:T=1615452219:S=ALNI_MYODb2-nk_DELlMN7vb01riiYrX3g',
+        'Host': 'alpha.news1.kr',
+        'Origin': 'http://alpha.news1.kr',
+        'Referer': 'http://alpha.news1.kr/view/report/disclosureinfo/dart/article_writing.php?id=700',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
+                      'Chrome/89.0.4389.82 Safari/537.36',
+        'X-Requested-With': 'XMLHttpRequest',
+    }
+    data = {
+        'cmd': 'article',
+        'op': 'new_article',
+        'autosave':'',
+        'articles_num':'',
+        'article_status': '99',
+        'article_org_status': '0',
+        'regist_status':'',
+        'result_category_selected':'',
+        'result_byline_selected':'',
+        'result_keyword_selected':'',
+        'result_keyword_str':'',
+        'result_article_relation_value':'',
+        'article_foreign_photo_id_arr':'',
+        'article_photo_id_arr':'',
+        'article_movie_id_arr':'',
+        'result_hotissue_selected':'',
+        'user_job_title': '98',
+        'article_title': title,
+        'editerComment':'',
+        'article_byline_area': '(서울=뉴스1)',
+        'article_byline_special':'',
+        'article_byline_selected': '959',  #서영빈 1128  / 전민 959
+        'article_byline_selector': '98',
+        'contentArea': article,
+        'article_editor_email': 'suhcrates@news1.kr',
+        'article_private_comment':'',
+        'article_embargodate':'',
+        'article_embargo_hour':'',
+        'article_embargo_min':'',
+        'department_id': '98',
+        'source_id': '10',
+        'article_category_id':'',
+        'article_category_selected': '211',
+        'article_kindof': '0',
+        'article_cotent_type[]': '8',
+        'keyword':'',
+        'add_keyword_issue':'',
+        'main_issue_keyword':'',
+        'www_only': '0',
+        'exclude_images': '0',
+        'article_bundle_id':'',
+        'article_bundle_selected':'',
+        'breaking': '2',
+        'article_relation_value':''
+    }
+
+
     session_requests.post(
         login_url,
         data = payload,
