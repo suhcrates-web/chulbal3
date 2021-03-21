@@ -215,7 +215,7 @@ def do(op='new_article', title = '제목없음', article = '내용없음', rcept
 
 
 #송고해버림
-#집배신 쿠키
+#집배신 쿠키. 쿠키 작동 안함. 쿠키 빼고 보내면 기사 안뜸.
 def do_songo_old(op='new_article', title = '제목없음', article = '내용없음', rcept_no = None):
     #세션열기
     session_requests = requests.session()
@@ -384,7 +384,7 @@ def do_songo(op='new_article', title = '제목없음', article = '내용없음',
         'editerComment':'',
         'article_byline_area': '(서울=뉴스1)',
         'article_byline_special':'',
-        'article_byline_selected': '959',  #서영빈 1128  / 전민 959
+        'article_byline_selected': '1128',  #서영빈 1128  / 전민 959
         'article_byline_selector': '98',
         'contentArea': article,
         'article_editor_email': 'suhcrates@news1.kr',
