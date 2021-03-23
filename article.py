@@ -652,7 +652,7 @@ def second_bo(jisu_dict_s=None, chul_ma = None):
     article = grap +article
 
     post.do_temp(title= title, article= article)
-    post.do_mbot(title= title, article= article, rcept_no = str(today) + str(cm_num)+ '4', rm=rm)
+    post.do_mbot(title= title, article= article, rcept_no = str(today) + str(cm_num)+ '7', rm=rm)
 
     bot('c' ,"2보 올렸습니다\n"+"http://testbot.ddns.net:5231/bot_v3")
     # print(title + article)

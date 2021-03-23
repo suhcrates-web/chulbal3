@@ -53,9 +53,11 @@ def do_mbot(op='set_disc', title = '((((테스트2)))', article = '내용없음2
             "article_content_type" : article_content_type,
             "category_ids" : category_ids
         }
-        requests.post(
+        a = requests.post(
             url,
             data = data,)
+        print(a.content)
+        print(a.headers)
 
 if __name__ == "__main__":
     today = datetime.today().strftime("%Y%m%d")
