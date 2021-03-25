@@ -219,6 +219,13 @@ def do(op='new_article', title = '제목없음', article = '내용없음', rcept
 #송고해버림
 #집배신 쿠키. 쿠키 작동 안함. 쿠키 빼고 보내면 기사 안뜸.
 def do_songo_old(op='new_article', title = '제목없음', article = '내용없음', rcept_no = None):
+
+    with open('C:/stamp/port.txt', 'r') as f:
+        port = f.read().split(',')#노트북 5232, 데스크탑 5231
+        port = port[0]  # http://172.30.1.53:5232/bot_v3/
+    if port =='5232':
+        print('집배신엔 안보냄')
+        return "집배신엔 안보냄"
     #세션열기
     session_requests = requests.session()
     #로그인정보
@@ -324,6 +331,14 @@ def do_songo_old(op='new_article', title = '제목없음', article = '내용없�
 
 #공시창 쿠키 사용. 이건 됨.
 def do_songo(op='new_article', title = '제목없음', article = '내용없음', rcept_no = None):
+
+    with open('C:/stamp/port.txt', 'r') as f:
+        port = f.read().split(',')#노트북 5232, 데스크탑 5231
+        port = port[0]  # http://172.30.1.53:5232/bot_v3/
+    if port =='5232':
+        print('집배신엔 안보냄')
+        return "집배신엔 안보냄"
+
     #세션열기
     session_requests = requests.session()
     #로그인정보
