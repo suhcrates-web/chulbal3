@@ -56,8 +56,10 @@ def magam():
     now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     with open('C:/stamp/sihwang.csv', 'w') as f:
         f.writelines(['0,',now,',',kospi_data['num'],',',kospi_data['point'],',',kospi_data['rate'],',',str(kospi_data[
-            'plma']),',',kosdaq_data['num'],',',kosdaq_data['point'],',',kosdaq_data['rate'],',',str(kosdaq_data[
-            'plma']),',',exch_data['num'],',',exch_data['point'],',',str(exch_data['plma'])]) #0은 장전 1은 장중 0은 마감과
+            'plma']),',',kospi_data['plma_ment'],',',kosdaq_data['num'],',',kosdaq_data['point'],','\
+                         ,kosdaq_data['rate'],',',str(kosdaq_data['plma']),',',kosdaq_data['plma_ment']\
+                         ,',',exch_data['num'],',',exch_data['point'],',',str(exch_data['plma'])\
+                      ,exch_data['plma_ment']]) #0은 장전 1은 장중 0은 마감과
         # 개장전
     return print('2보 끝')
 
