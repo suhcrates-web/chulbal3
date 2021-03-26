@@ -61,4 +61,3 @@ def magam():
         # 개장전
     return print('2보 끝')
 
-print(magam())
