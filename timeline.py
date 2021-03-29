@@ -9,6 +9,8 @@ from telebot import bot
 def timeline():
     i=0
     while True:
+
+
         now= datetime.today().strftime(format='%H:%M')
         print('1/3')
         #출발

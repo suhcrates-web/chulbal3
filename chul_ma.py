@@ -19,7 +19,7 @@ def chulbal():
     time.sleep(1)
     now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     with open('C:/stamp/sihwang.csv', 'w') as f:
-        f.writelines['1,',now] #0은 장전 1은 장중 0은 마감과 개장전
+        f.writelines(['1,',now]) #0은 장전 1은 장중 0은 마감과 개장전
     # chul_dict = {}
     # chul_dict['kospi'] = kos_data['kospi']
     # chul_dict['kosdaq'] = kos_data['kosdaq']

@@ -330,7 +330,7 @@ def do_songo_old(op='new_article', title = '제목없음', article = '내용없�
         headers=header)
 
 #공시창 쿠키 사용. 이건 됨.
-def do_songo(op='new_article', title = '제목없음', article = '내용없음', rcept_no = None):
+def do_songo(op='new_article', title = '제목없음', article = '내용없음', rcept_no = None, byline=''):
 
     with open('C:/stamp/port.txt', 'r') as f:
         port = f.read().split(',')#노트북 5232, 데스크탑 5231
@@ -339,6 +339,8 @@ def do_songo(op='new_article', title = '제목없음', article = '내용없음',
         print('집배신엔 안보냄')
         return "집배신엔 안보냄"
 
+    with open('C:/stamp/dangbun_id.txt', 'r') as f:
+        byline = str(f.read())
     #세션열기
     session_requests = requests.session()
     #로그인정보
@@ -368,7 +370,7 @@ def do_songo(op='new_article', title = '제목없음', article = '내용없음',
         'Accept-Encoding': 'gzip, deflate',
         'Accept-Language': 'ko,en-US;q=0.9,en;q=0.8,ko-KR;q=0.7',
         'Connection': 'keep-alive',
-        'Content-Length': '2502',
+        'Content-Length': len(article),
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
         'Cookie': '_ga=GA1.2.1978667146.1545832163; dable_uid=31188705.1553472886532; '
                   '_ss_pp_id=a07ad53b6b5b3268f674db58043e890d; _gid=GA1.2.1846676616.1615272236; HttpOnly; PHPSESSID=d24fvdf7it0oe0pe06vh420tb5; journal_news1=6ywi%2Bi1EUDgHHe%2Be0HwOuzjEkXRi3n31kC0w7E9gG%2F91Ln7SBpd2BVSeCMpbOQFmUh0IF2qR82cddTRUevXruKd%2B5AoLAn67ZVf%2Bk%2FZTjRDUnE0L6tYCpHs6t8q%2BoEObkMsKEAk417%2FJlIspbzQ3hZxjKBU%2FQ4bawsxLsyvRpT1K1zBuWXomawl6%2BFY1LHGPbnbTGRkrEhbY4QpmV2jmMETh0NWh4Pa%2B%2FxQ4cUpEXwHVfSCPSQKVUoI54fIq75j0EjYO0u2XF%2B%2Fp4kgN13ZycFb65SfZab8gCNk4ys0unpyRVZQIHfQJ0jVexksE5g8btMSUdAcEyskrwNjOCtHwsjiMAsZFjVfy8FMVqSiMiAXVz1iJvv8aEwQO0KF8JzJfdpW4ySf6sYYzczGkyPujFjQne%2FldZ7hB7ZWTF9GuCqTS94Q3AGAgc051vRwDXJ%2BHz6yS8r21oBSXwkHHBiSz2YM9QXKMvlJiSYYe8UgIAHPzswX838RJlnKn%2FfZoK565UMMnMwxXxR2ZEf3Qt4rX2BRCJ%2FKG8fwhNnqvcc8hUZ%2Fjbm%2F%2BVnWEEjYVJYatoBuavMzNegi9qfWwGcwlsrLI8eoimTTzfZW38kD2hqkan5hCzH0JqdTbd4HSmkM8Z%2B%2FLModeQxjCnFRv9enaQEpP8B110aI7w7VBjWTrymagfoCudULTLYDVpEOBhKX5jRdTrpc2HWQ1dOmcM1sYPw6aDmAjEyZbnHJoKns%2FkPz0jTqiSn24lt039%2BZ2elCTvwzM5aB6ajyWK3c9lQX%2B1SV%2FVyEFBZeOQbpZ0dsZTcckkXON1YTUJErA3uHEoo04GHV9ODdRw1kfvsmVzXWxDGvG%2F%2BE%2BBD29XdorhgAyOxAp19hwdmTQaU7Tas%2F4z41pyIdQcHPjyV4jtrA7cRf5ANg97OwaPlcOLWuLeCfWGfuAXGlPi8QZKExq4Im1CxK9s1oVMatYfleEAYCaF74hgp%2FUkhy%2BFGWpp1OyzfwQoZXed3DExuw7%2FrDbDe4X4LFU%2FKTiqJ23%2BCZ1TDg4hFPZ3B9EYtEXCDSD32wYNkMORnxJtrw%3D; _td=4a06d3c1-7974-4b42-977e-2d9ec769d32e; __gads=ID=aaad8bfa1da87c47:T=1615452219:S=ALNI_MYODb2-nk_DELlMN7vb01riiYrX3g',
@@ -401,7 +403,7 @@ def do_songo(op='new_article', title = '제목없음', article = '내용없음',
         'editerComment':'',
         'article_byline_area': '(서울=뉴스1)',
         'article_byline_special':'',
-        'article_byline_selected': '1128',  #서영빈 1128  / 전민 959
+        'article_byline_selected': byline,  #서영빈 1128  / 전민 959
         'article_byline_selector': '98',
         'contentArea': article,
         'article_editor_email': 'suhcrates@news1.kr',
