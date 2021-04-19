@@ -20,6 +20,8 @@ def chulbal():
     now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     with open('C:/stamp/sihwang.csv', 'w') as f:
         f.writelines(['1,',now]) #0은 장전 1은 장중 0은 마감과 개장전
+    with open('C:/stamp/sihwang2.csv', 'w') as f:
+        f.writelines(['1,',now]) #0은 장전 1은 장중 0은 마감과 개장전
     # chul_dict = {}
     # chul_dict['kospi'] = kos_data['kospi']
     # chul_dict['kosdaq'] = kos_data['kosdaq']
@@ -61,5 +63,12 @@ def magam():
                          ,',',exch_data['num'],',',exch_data['point'],',',str(exch_data['plma'])\
                       ,exch_data['plma_ment']]) #0은 장전 1은 장중 0은 마감과
         # 개장전
+    with open('C:/stamp/sihwang2.csv', 'w') as f:
+        f.writelines(['0,',now,',',kospi_data['num'],',',kospi_data['point'],',',kospi_data['rate'],',',str(kospi_data[
+                                                                                                                'plma']),',',kospi_data['plma_ment'],',',kosdaq_data['num'],',',kosdaq_data['point'],',' \
+                         ,kosdaq_data['rate'],',',str(kosdaq_data['plma']),',',kosdaq_data['plma_ment'] \
+                         ,',',exch_data['num'],',',exch_data['point'],',',str(exch_data['plma']) \
+                         ,exch_data['plma_ment']]) #0은 장전 1은 장중 0은 마감과
+    # 개장전
     return print('2보 끝')
 
