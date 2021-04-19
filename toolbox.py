@@ -101,7 +101,10 @@ def make_dict(be_0 = 'None'):
 
 
         #증감율 구간
-        rate = jisu[3].replace('%','').replace(' ','')
+        try:
+            rate = jisu[3].replace('%','').replace(' ','')
+        except:
+            rate= '0'
         jisu_dict['rate'] = rate
 
         name = name.lower()
