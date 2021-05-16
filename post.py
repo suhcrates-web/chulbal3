@@ -347,8 +347,8 @@ def do_songo(op='new_article', title = '제목없음', article = '내용없음',
     payload = {
         'cmd' : 'member',
         'op' : 'alpha_login',
-        'uid' : 'suhcrates' ,
-        'pwd' : 'sbtmdnjs1'
+        'uid' : 'min785' ,
+        'pwd' : 'sbtmdnjs1!'
     }
     #로그인, 기사 보내는 ajax url.
     login_url ='http://alpha.news1.kr/ajax/ajax.php'
@@ -406,7 +406,7 @@ def do_songo(op='new_article', title = '제목없음', article = '내용없음',
         'article_byline_selected': byline,  #서영빈 1128  / 전민 959
         'article_byline_selector': '98',
         'contentArea': article,
-        'article_editor_email': 'suhcrates@news1.kr',
+        'article_editor_email': 'min785@news1.kr',
         'article_private_comment':'',
         'article_embargodate':'',
         'article_embargo_hour':'',
