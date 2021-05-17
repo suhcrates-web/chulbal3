@@ -24,12 +24,12 @@ def do_temp(op=None, title = '제목없음', article = '내용없음', info = '�
 def do_mbot(op='set_disc', title = '((((테스트2)))', article = '내용없음2', rcept_no = None, stock_code='111', corp_cls =
 "None", ori_url = "None", article_content_type= "8", category_ids = "211", corp_name = None, rm =" "):
 
-    with open('C:/stamp/port.txt', 'r') as f:
-        port = f.read().split(',')#노트북 5232, 데스크탑 5231
-        port = port[0]  # http://172.30.1.53:5232/bot_v3/
-    if port =='5232':
-        print('집배신엔 안보냄')
-        return "집배신엔 안보냄"
+    # with open('C:/stamp/port.txt', 'r') as f:
+    #     port = f.read().split(',')#노트북 5232, 데스크탑 5231
+    #     port = port[0]  # http://172.30.1.53:5232/bot_v3/
+    # if port =='5232':
+    #     print('집배신엔 안보냄')
+    #     return "집배신엔 안보냄"
 
     url = 'http://alpha.news1.kr/ajax/article_api.php'
     today = datetime.today().strftime("%Y%m%d")
@@ -62,7 +62,7 @@ def do_mbot(op='set_disc', title = '((((테스트2)))', article = '내용없음2
 if __name__ == "__main__":
     today = datetime.today().strftime("%Y%m%d")
 
-    do_mbot(rcept_no=str(today) +'32')
+    do_mbot(rcept_no=str(today) +'99', title="[인사]신한금융투자")
 
 def do_mbot2(op='제목없음', title = '제목없음', article = '내용없음', rcept_no = None, stock_code='111', corp_cls =
 "None", ori_url = "None", article_cotent_type= "8", category_id = "83", corp_name = None):
@@ -365,7 +365,7 @@ def do_songo(op='new_article', title = '제목없음', article = '내용없음',
     """
 
 
-    header = {
+    header = {  #바이라인 서영빈
         'Accept': 'application/json, text/javascript, */*; q=0.01',
         'Accept-Encoding': 'gzip, deflate',
         'Accept-Language': 'ko,en-US;q=0.9,en;q=0.8,ko-KR;q=0.7',
@@ -381,6 +381,24 @@ def do_songo(op='new_article', title = '제목없음', article = '내용없음',
                       'Chrome/89.0.4389.82 Safari/537.36',
         'X-Requested-With': 'XMLHttpRequest',
     }
+
+    header = {  #바이라인 전민
+        'Accept': 'application/json, text/javascript, */*; q=0.01',
+        'Accept-Encoding': 'gzip, deflate',
+        'Accept-Language': 'ko,en-US;q=0.9,en;q=0.8,ko-KR;q=0.7',
+        'Connection': 'keep-alive',
+        'Content-Length': len(article),
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'Cookie': 'HttpOnly; PHPSESSID=9chnncf40pdr669aeb6k23jd82; \
+                  journal_news1=RM2N7EVHyqL7gpEKsWfNoOT8MuaOoRx%2FYsjTEQLk6FDql5Nf%2Bs8WEHdxVpS22DWJoKYp5NJfszs7osjLexvd249MLIeL%2FqvY2Gz1MQjIFJUcKVq79vGq52DD0c1t2iY41G9JPabcpr%2FxpohjbYMs4tpiN0FSRmROat6tVNSmyJRw1G81va32j8mU8xcNzyYo7l6Us%2BcWJBuPdluhf1SKlVc3j%2BRmP0vFBoMi3H3jTzI5p8jh1bLvE8%2BUUQHu01j%2BZQbMc6Wuy8h5CLoyDaeRCYp5YNgMkd5dS8gnwpLsGCM3ucTNcSquSPrA8XMvxofCSTN4uivx2Th5AqkSqC5Eda%2BZ%2Bv4PNxgjZBm8eqFQs%2F%2F5B6DsSP2vS%2B%2BpL51svVr9l5TS60FDR2zCxti3UNW9Xahap7AAZq49qK5Il1Nz6sylqjL2b2y2nZd6wSPbzN5RFvitH3WYJYPOuCcDME6exFM6YS56Yd4e7M1sSdvNY9uRTh%2F7EwwL4dccl%2FEdNTYHHaR9vu%2BQJsr%2BrXW%2FNzrMv1hxWFjkLdAG%2Fe1hNaUong43bkTuiMw9KVBDs%2FP40KJmn4f7gCJuavrLbRV%2B83PadHddxxMCO%2BXm0II1AH%2Bq0YJiyilW44bPZW8Y1fPez4UgbZMeVCLv0b8leEfh2yMBne0NMEzaLd7NRiolXR8eKUWdzCepG17x6UHGZREMx5atOY7bA0OlZluBOHejdkaeWbiDs9MBEiWE4GjtxjN0T1O%2FxZWdpnrfEYxQMAUo%2BdrBeiNmmKFk%2Bez5brtOzo8x4kzqnQkzolwNsmahfvWlqDoTz0abfPEF%2FFPP3ClNwYYhAPcwv%2BW5xO3UzKuEM1CYRFp9vYhanHjJ5FGr3K3xRfKC3WZR2OKbfIAZm2dyepdSYC5jiSZdax%2Fspc%2F8pE%2BxUG58C1xuwiLUyB8D1SHMtZ9hlT7tPtJCAM6O8iP8XgmR27ijQmSuREXvKxmUzEIFgREBChs2hDlc5WfC8qlkTUepL8eyiq23iSfoDL%2B3PCgMl4iP8S2qWD5SD4c3rua%2Bt%2BwqMnGLd9CrJDOAkG8ccBWcwHBf2p8HN9oqvf27jfHUe38sKtJPZE%2Fngi2q0%2F%2BJT622y0NW4lZfyOiEIz6uquWcCO945FXRVz0AkFH0AcOG',
+        'Host': 'alpha.news1.kr',
+        'Origin': 'http://alpha.news1.kr',
+        'Referer': 'http://alpha.news1.kr/view/report/disclosureinfo/dart/article_writing.php?id=1630',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) C\
+                      hrome/90.0.4430.93 Safari/537.36',
+        'X-Requested-With': 'XMLHttpRequest'
+    }
+
     data = {
         'cmd': 'article',
         'op': 'new_article',
