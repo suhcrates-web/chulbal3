@@ -24,12 +24,12 @@ def do_temp(op=None, title = '제목없음', article = '내용없음', info = '�
 def do_mbot(op='set_disc', title = '((((테스트2)))', article = '내용없음2', rcept_no = None, stock_code='111', corp_cls =
 "None", ori_url = "None", article_content_type= "8", category_ids = "211", corp_name = None, rm =" "):
 
-    # with open('C:/stamp/port.txt', 'r') as f:
-    #     port = f.read().split(',')#노트북 5232, 데스크탑 5231
-    #     port = port[0]  # http://172.30.1.53:5232/bot_v3/
-    # if port =='5232':
-    #     print('집배신엔 안보냄')
-    #     return "집배신엔 안보냄"
+    with open('C:/stamp/port.txt', 'r') as f:
+        port = f.read().split(',')#노트북 5232, 데스크탑 5231
+        port = port[0]  # http://172.30.1.53:5232/bot_v3/
+    if port =='5232':
+        print('집배신엔 안보냄')
+        return "집배신엔 안보냄"
 
     url = 'http://alpha.news1.kr/ajax/article_api.php'
     today = datetime.today().strftime("%Y%m%d")
@@ -59,10 +59,7 @@ def do_mbot(op='set_disc', title = '((((테스트2)))', article = '내용없음2
         print(a.content)
         print(a.headers)
 
-if __name__ == "__main__":
-    today = datetime.today().strftime("%Y%m%d")
 
-    do_mbot(rcept_no=str(today) +'99', title="[인사]신한금융투자")
 
 def do_mbot2(op='제목없음', title = '제목없음', article = '내용없음', rcept_no = None, stock_code='111', corp_cls =
 "None", ori_url = "None", article_cotent_type= "8", category_id = "83", corp_name = None):
@@ -454,3 +451,10 @@ def do_songo(op='new_article', title = '제목없음', article = '내용없음',
         login_url,
         data = data,
         headers=header)
+
+
+if __name__ == "__main__":
+    today = datetime.today().strftime("%Y%m%d")
+
+    # do_mbot(rcept_no=str(today) +'99', title="[인사]신한금융투자")
+    # do_songo(title='[인사]미래에셋증권', article = """◆미래에셋증권 <br><신임> <br>▷대표 △디지털부문 안인성""")
