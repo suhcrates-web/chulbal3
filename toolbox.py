@@ -20,8 +20,14 @@ def exch_article(tit, chul_ma):
             plma = True
         elif plma_ment == '내린':
             plma = False
+    elif bool(re.search('보합')): #[외환] 원/달러 환율 1,127.0원 보합(개장)
+        num = re.findall(r'\d+\.?\d*?원', tit)[0].replace('원','')
+        point= 0
+        plma_ment ='보합'
+        plma = '보합'
+        pass
     else:
-        raise('연합 환율 제목에 "내린", "오른"  없음.')
+        raise('연합 환율 제목에 "내린", "오른", "보합"  없음.')
     jisu_dict_s = {}
     jisu_dict_s['원/달러'] = {'name': '원/달러', 'num': num, 'plma': plma, 'plma_ment': plma_ment, 'point': point, 'rate': '0'}
 
@@ -34,12 +40,18 @@ def exch_article(tit, chul_ma):
     today = date.today().day
     name_h = '달러/원'  #한글이름
     name = '원/달러'
-    point = jisu_dict_s[name]['point'] # 원
-    point = str(float(point))
-    num = jisu_dict_s[name]['num']
-    num = str(float(num))
-    plma_ment = jisu_dict_s[name]['plma_ment']
-    title = f"""[{name_h}] 환율 {point}원 {plma_ment} {num}원 {st_en} """
+
+    if plma== '보합':
+        num = jisu_dict_s[name]['num']
+        title = f"""[{name_h}] 환율 {num}원 보합 {st_en}"""
+    else:
+
+        point = jisu_dict_s[name]['point'] # 원
+        point = str(float(point))
+        num = jisu_dict_s[name]['num']
+        num = str(float(num))
+        plma_ment = jisu_dict_s[name]['plma_ment']
+        title = f"""[{name_h}] 환율 {point}원 {plma_ment} {num}원 {st_en} """
     article = f"""{today}일 {name_h}"""
 
     grap = ''
